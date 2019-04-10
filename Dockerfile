@@ -11,8 +11,12 @@ ENV PATH=/home/node/.npm-global/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 ENV DEBUG="*"
 
+WORKDIR /app
+COPY . /app
+RUN chown -R node:node /app
+
 USER node
-RUN npm install -g ssb-mirror@0.0.11
+RUN npm install -g .
 
 EXPOSE 8008
 EXPOSE 8007
